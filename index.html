@@ -194,9 +194,21 @@
         display: inline-block;
         animation: fadeInLetter 0.3s forwards;
         white-space: pre; /* Preserve spacing */
+      }
+
+      .romantic-message span.emoji {
         font-family:
-          "Great Vibes", "Apple Color Emoji", "Segoe UI Emoji",
-          "Noto Color Emoji", cursive;
+          "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+      }
+
+      .rose-emoji {
+        font-family:
+          "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+        font-size: 3.5rem;
+        display: block;
+        margin-top: 20px;
+        opacity: 0;
+        animation: fadeIn 1s 3s forwards;
       }
 
       @keyframes fadeInLetter {
@@ -258,13 +270,13 @@
 
     <div class="message-container" id="messageContainer">
       <div class="romantic-message" id="romanticMessage"></div>
+      <div class="rose-emoji">🌹</div>
       <div class="subtitle">Happy Rose Day ❤️</div>
     </div>
 
     <script>
       let clicked = false;
-      const message =
-        "Guldasta ko phool dene aaya hun,<br>dumb matt samajna 🌹";
+      const message = "Guldasta ko phool dene aaya hun,<br>dumb matt samajna";
 
       // Ensure proper word spacing
       const messageLines = message.split("<br>");
@@ -352,6 +364,10 @@
         let charIndex = 0;
         const lines = messageLines;
 
+        // Emoji regex to detect emoji characters
+        const emojiRegex =
+          /[\u{1F300}-\u{1F9FF}]|[\u{2600}-\u{26FF}]|[\u{2700}-\u{27BF}]/u;
+
         lines.forEach((line, lineIndex) => {
           const lineSpan = document.createElement("div");
 
@@ -364,6 +380,12 @@
             const span = document.createElement("span");
             span.textContent = char;
             span.style.animationDelay = charIndex * 0.05 + "s";
+
+            // Add emoji class if character is an emoji
+            if (emojiRegex.test(char)) {
+              span.classList.add("emoji");
+            }
+
             lineSpan.appendChild(span);
             charIndex++;
           });
