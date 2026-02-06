@@ -261,11 +261,43 @@
 
       @media (max-width: 768px) {
         .initial-text {
-          font-size: 1.8rem;
+          font-size: 1.5rem;
           padding: 0 20px;
         }
 
         .romantic-message {
+          font-size: 2.2rem;
+          line-height: 1.5;
+        }
+
+        .romantic-message > div {
+          white-space: normal; /* Allow wrapping on mobile */
+        }
+
+        .rose-emoji {
+          font-size: 2.5rem;
+          margin-top: 15px;
+        }
+
+        .subtitle {
+          font-size: 1.1rem;
+        }
+
+        .message-container {
+          padding: 20px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .initial-text {
+          font-size: 1.3rem;
+        }
+
+        .romantic-message {
+          font-size: 1.8rem;
+        }
+
+        .rose-emoji {
           font-size: 2rem;
         }
 
@@ -279,7 +311,12 @@
     <div class="background"></div>
     <div class="vignette"></div>
 
-    <div class="initial-text" id="initialText">Smth for you &lt;3</div>
+    <div class="initial-text" id="initialText">
+      Smth for you &lt;3<br />
+      <span style="font-size: 0.8rem; opacity: 0.7; letter-spacing: 1px"
+        >Click</span
+      >
+    </div>
 
     <div class="rose-container" id="roseContainer"></div>
 
